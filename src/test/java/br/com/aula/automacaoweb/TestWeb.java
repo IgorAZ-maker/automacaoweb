@@ -21,7 +21,7 @@ public class TestWeb {
 
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("https://youtube.com");
+        driver.get("https://www.chronosacademy.com.br");
     }
 
 
@@ -29,10 +29,10 @@ public class TestWeb {
     @Test
     public void primeiroTest(){
 
-        String xpathTitulo = "//*[@id=\"sections\"]/ytd-guide-signin-promo-renderer/yt-formatted-string";
+        String xpathTitulo = "//section[2]//h4";
         WebElement txtTitulo = driver.findElement(By.xpath(xpathTitulo));
         String titulo = txtTitulo.getText();
-        assertEquals("Faça login para curtir vídeos, comentar e se inscrever.", titulo);
+        assertEquals("Porque Tempo É Conhecimento.", titulo);
 
     }
 
