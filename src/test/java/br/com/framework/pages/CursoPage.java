@@ -1,9 +1,7 @@
-package br.com.aula.pages;
+package br.com.framework.pages;
 
-import br.com.aula.maps.CursoMap;
-import org.openqa.selenium.By;
+import br.com.framework.maps.CursoMap;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 public class CursoPage{
