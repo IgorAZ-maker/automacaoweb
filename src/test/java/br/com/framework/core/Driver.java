@@ -1,4 +1,4 @@
-package br.com.aula.core;
+package br.com.framework.core;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
