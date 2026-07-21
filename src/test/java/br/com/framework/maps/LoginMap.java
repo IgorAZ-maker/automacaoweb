@@ -22,6 +22,10 @@ public class LoginMap {
     public WebElement linkCreateAccount;
     @FindBy(css = ".loader")
     public WebElement divLoader;
+    @FindBy(css = ".containMiniTitle ")
+    public WebElement txtLogado;
+    @FindBy(xpath = "//label[contains(text(), 'Incorrect ')]")
+    public WebElement txtErroLogin;
 
 
 }
