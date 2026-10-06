@@ -13,6 +13,7 @@ target
 *.iws
 *.iml
 *.ipr
+src/test/resources/evidencias/*/*.png
 .idea
 
 ### Eclipse ###

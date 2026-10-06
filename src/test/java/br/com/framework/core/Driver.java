@@ -8,6 +8,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -34,28 +35,39 @@ public class Driver {
     }
 
     public Driver(Browser navegador){
+        boolean maximizar = true;
 
-    switch (navegador){
-        case CHROME:
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-            break;
-        case IE:
-            WebDriverManager.iedriver().setup();
-            driver = new InternetExplorerDriver();
-            break;
-        case FIREFOX:
-            WebDriverManager.firefoxdriver().setup();
-            driver = new FirefoxDriver();
-            break;
-        case EDGE:
-            WebDriverManager.edgedriver().setup();
-            driver = new EdgeDriver();
-            break;
+        switch (navegador){
+            case CHROME:
+                startChrome();
+                maximizar = false;
+                break;
+            case IE:
+                WebDriverManager.iedriver().setup();
+                driver = new InternetExplorerDriver();
+                break;
+            case FIREFOX:
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+                break;
+            case EDGE:
+                WebDriverManager.edgedriver().setup();
+                driver = new EdgeDriver();
+                break;
 
+        }
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        if (maximizar) {
+            driver.manage().window().maximize();
+        }
     }
-    wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    driver.manage().window().maximize();
+    private static void startChrome() {
+        WebDriverManager.chromedriver().setup();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        boolean headless = Boolean.parseBoolean(System.getProperty("headless"));
+        chromeOptions.addArguments("--headless=new");
+        chromeOptions.addArguments("--window-size=1200,720");
+        driver = new ChromeDriver(chromeOptions);
     }
 
     public static void visibilityOf(WebElement element){
