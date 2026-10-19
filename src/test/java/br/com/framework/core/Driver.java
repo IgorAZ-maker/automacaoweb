@@ -75,7 +75,7 @@ public class Driver {
     }
 
     public static void invisibilityOf(WebElement element){
-        wait.until(ExpectedConditions.visibilityOf(element));
+        wait.until(ExpectedConditions.invisibilityOf(element));
     }
 
     public static void atributeChange(WebElement element, String attribute, String value){
