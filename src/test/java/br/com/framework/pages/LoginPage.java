@@ -3,6 +3,8 @@ package br.com.framework.pages;
 import br.com.framework.core.Driver;
 import br.com.framework.maps.LoginMap;
 import com.github.dockerjava.api.model.Link;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.StringReader;
@@ -16,7 +18,8 @@ public class LoginPage {
     }
 
     public void clickBtnLogin(){
-        Driver.invisibilityOf(loginMap.btnLogin);
+        Driver.visibilityOf(loginMap.btnLogin);
+        aguardaLoader();
         loginMap.btnLogin.click();
     }
 
@@ -25,7 +28,12 @@ public class LoginPage {
     }
 
     public void clickDivFecharModal(){
-        loginMap.divFecharModal.click();
+        // o centro da .PopUp fica sobre a modal; clica no canto superior esquerdo (fora dela)
+        Dimension tamanho = loginMap.divFecharModal.getSize();
+        new Actions(Driver.getDriver())
+                .moveToElement(loginMap.divFecharModal, -tamanho.getWidth() / 2 + 10, -tamanho.getHeight() / 2 + 10)
+                .click()
+                .perform();
     }
 
     public void setInpUsername(String username){
@@ -37,6 +45,7 @@ public class LoginPage {
     }
 
     public void clickInpRemember(){
+        aguardaLoader();
         loginMap.inpRemember.click();
     }
 
@@ -61,7 +70,7 @@ public class LoginPage {
     }
 
     public void aguardaLoader(){
-        Driver.atributeChange(loginMap.divLoader, "display", "none");
+        Driver.invisibilityOf(loginMap.divLoader);
     }
 
     public String getUsuarioLogado(){
